@@ -34,6 +34,202 @@ ul.main-menu {
     color: black;
 }
 
+.main-menu a:hover {
+    color:rgba(200, 200, 200, 1);
+}
+
+
+/* MODALE */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* Conteneur principal de la modale */
+.contenu-modal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    margin: auto;
+    width: 75%;
+    max-width: 600px;
+    border: 5px solid black;
+    font-family: monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* L'image de titre "CONTACT" */
+.contenu-modal img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Styles des champs de saisie */
+.contenu-modal input[type="text"],
+.contenu-modal input[type="email"],
+.contenu-modal textarea {
+    width: 100%;
+    border: 1px solid #B6B6B6;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+/* Styles des labels (Nom, Email, etc.) */
+.contenu-modal label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Bouton Envoyer */
+.contenu-modal input[type="submit"] {
+    display: block;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 20px auto 0 auto;
+    background-color: rgba(220, 220, 220, 1);
+    border: none;
+    padding: 10px 100px;
+}
+
+.contenu-modal input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: rgba(200, 200, 200, 1);
+}
+
+/* Image page d'accueil */
+.accueil {
+  width: 100%;
+}
+
+.accueil img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Galeries photos de la page d'accueil chaque image est rajouté via la boucle wp */
+
+.galerie_accueil {
+  margin: 0 50px 50px 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.photo_accueil {
+  aspect-ratio: 1 / 1; /* carré parfait */
+  overflow: hidden;
+}
+
+.photo_accueil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; 
+  display: block;
+}
+
+/* Bouton pagination */
+
+.bouton_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.bouton_pagination button {
+    background-color: rgba(220, 220, 220, 1);
+    border: none;
+    border-radius: 2px;
+    padding: 15px 80px;
+    font-family: monospace;
+    font-size: medium;
+    color: black;
+}
+
+.bouton_pagination button:hover {
+    cursor: pointer;
+    background-color: rgba(200, 200, 200, 1);
+}
+
+/* Page mise en avant photo */
+
+.conteneur-photo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 30px 100px;
+}
+
+/* COLONNE GAUCHE */
+.infos-photo {
+  flex: 1;
+  font-family:monospace;
+  font-size: medium;
+}
+
+.infos-photo h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.infos-photo p {
+  margin: 20px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* COLONNE DROITE */
+.photographie {
+  flex: 1;
+}
+
+.photographie img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Filtres page d'accueil */
+.filtres {
+    display: flex;
+    gap: 20px;
+    padding: 40px 0;
+    margin: 50px 50px 0 50px;
+}
+
+.filtres select {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 10px 40px 10px 15px;
+    font-family: monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: black;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+#filtre-tri {
+    margin-left: auto;
+}
+
+
 /* FOOTER */
 
 ul.footer-menu {
@@ -54,35 +250,49 @@ ul.footer-menu {
     color: black;
 }
 
-/* MODALE */
+.footer-menu a:hover {
+    color:rgba(200, 200, 200, 1);
+}
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .galerie_accueil {
+    grid-template-columns: 1fr;
+  }
+
+  .conteneur-photo {
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .photographie {
+    order: 1;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-}
+  }
 
-.contenu-modal {
-    background-color: white;
-    margin: 5% auto;
-    padding: 30px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-}
+  .infos-photo {
+    order: 2;
+    width: 100%;
+  }
 
-/* Image page d'accueil */
-.accueil {
-  width: 100%;
-}
+  .infos-photo h1 {
+    font-size: 1.5rem;
+  }
 
-.accueil img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
+  .infos-photo p {
+    font-size: 1rem;
+  }
+
+  .filtres {
+        flex-direction: column;
+        align-items: center; /* Pour que les blocs soient centrés une fois empilés */
+    }
+
+  #filtre-tri {
+        margin-left: 0; /* Annule le décalage à droite en mode vertical */
+    }
+
 }
