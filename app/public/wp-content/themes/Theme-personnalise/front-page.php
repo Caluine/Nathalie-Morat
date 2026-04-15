@@ -40,6 +40,7 @@
 
   <!-- Tri avec les valeurs descendant et ascendant-->
   <select id="filtre-tri">
+    <option value="" disabled selected hidden>TRIER PAR</option>
     <option value="DESC">Plus récentes</option>
     <option value="ASC">Plus anciennes</option>
   </select>

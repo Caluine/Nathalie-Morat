@@ -46,7 +46,57 @@
       </div>
 
     </div>
+     <div class="contact-navigation">
+      <div class="contact-flex">
+        <p>Cette photo vous intéresse ?</p>
+        <button class="contact-btn">Contact</button>
+      </div>
 
+      <div class="navigation-photo">
+        <div class="nav-thumbnail">
+            </div>
+        <div class="nav-links">
+          <?php 
+            previous_post_link('%link', '←'); 
+            next_post_link('%link', '→'); 
+          ?>
+        </div>
+      </div>
+    </div>
+
+    <div class="suggestions-container">
+      <h3>VOUS AIMEREZ AUSSI</h3>
+      <div class="suggestions-photos">
+        <?php
+        // Logique de recommandation
+        $category_slug = ($categories) ? $categories[0]->slug : '';
+        $args = [
+          'post_type' => 'photo',
+          'posts_per_page' => 2,
+          'post__not_in' => [get_the_ID()],
+          'tax_query' => [
+            [
+              'taxonomy' => 'categorie_photo',
+              'field' => 'slug',
+              'terms' => $category_slug
+            ]
+          ]
+        ];
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) :
+          while ($query->have_posts()) : $query->the_post(); ?>
+            <div class="suggestion-item">
+              <a href="<?php the_permalink(); ?>">
+                <?php the_post_thumbnail('medium'); ?>
+              </a>
+            </div>
+          <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+      </div>
+    </div>
   <?php endwhile; endif; ?>
 
 </main>
