@@ -22,10 +22,12 @@ function theme_charger_scripts()
 add_action('wp_enqueue_scripts', 'theme_charger_scripts');
 
 
+
 // Rajout du chemin du fichier AJAX
 function ajouter_ajax_url()
 {
   wp_localize_script('main-script', 'ajaxurl', admin_url('admin-ajax.php'));
+  wp_localize_script('main-script', 'nonce', wp_create_nonce('mota-photo'));
 }
 add_action('wp_enqueue_scripts', 'ajouter_ajax_url');
 
@@ -37,6 +39,16 @@ function charger_plus()
   $tri = isset($_POST['tri']) ? $_POST['tri'] : 'DESC';
   $categorie = isset($_POST['categorie']) ? $_POST['categorie'] : '';
   $format = isset($_POST['format']) ? $_POST['format'] : '';
+  // Controle sécurité jeton nonce
+ $nonce = $_POST['nonce'];
+//  $nonce = 123;
+  if( 
+     ! isset( $nonce ) or 
+     ! wp_verify_nonce( $nonce, 'mota-photo' ) 
+  ) {
+      wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+  }
+
 
   $query = new WP_Query([
     'post_type' => 'photo',

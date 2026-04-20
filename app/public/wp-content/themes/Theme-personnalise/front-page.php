@@ -2,7 +2,8 @@
 <?php get_header(); ?>
 
 <div class="accueil">
-  <img src="<?php echo get_template_directory_uri(); ?>/images/accueil.png" alt="Photo de la page d'accueil">
+    <img src="<?php echo get_template_directory_uri(); ?>/images/nathalie-11.jpeg" alt="Photo de la page d'accueil">
+    <h1>Photographe event</h1>
 </div>
 
 <!-- Partie des filtres -->

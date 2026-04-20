@@ -1,56 +1,56 @@
 // Modale de contact
-
 document.addEventListener("DOMContentLoaded", function () {
-	const modaleContact = document.getElementById("contactModal");
-	const boutonContact = document.querySelectorAll(".contact-btn"); // classe ajoutée dans WordPress
-	const boutonFermer = document.querySelector(".modal .close");
+    const modaleContact = document.getElementById("contactModal");
+    const boutonsContact = document.querySelectorAll(".contact-btn");
+    const refPhoto = document.getElementById("ref-photo"); // L'ID ajouté dans CF7
 
-	// Fonction pour ouvrir la modale
-	function ouvrirModale() {
-		if (modaleContact) {
-			modaleContact.style.display = "flex";
-		}
-	}
+    // Fonction pour ouvrir la modale
+    function ouvrirModale(referenceValue = "") {
+        if (modaleContact) {
+            // Si on a une référence, on l'injecte dans le champ du formulaire
+            if (refPhoto) {
+                refPhoto.value = referenceValue;
+            }
+            modaleContact.style.display = "flex";
+        }
+    }
 
-	// Fonction pour fermer la modale
-	function fermerModale() {
-		if (modaleContact) {
-			modaleContact.style.display = "none";
-		}
-	}
+    // Fonction pour fermer la modale
+    function fermerModale() {
+        if (modaleContact) {
+            modaleContact.style.display = "none";
+        }
+    }
 
-	// On ajoute l'événement click sur chaque bouton "Contact"
-	boutonContact.forEach(function (bouton) {
-		bouton.addEventListener("click", function () {
-			ouvrirModale();
-		});
-	});
+    // On ajoute l'événement click sur chaque bouton "Contact"
+    boutonsContact.forEach(function (bouton) {
+        bouton.addEventListener("click", function () {
+            // On récupère la valeur du data-reference (sera vide pour le bouton du header)
+            const ref = this.getAttribute("data-reference") || "";
+            ouvrirModale(ref);
+        });
+    });
 
-	// On ferme si on clique à l'extérieur de la zone
-	window.addEventListener("click", function (event) {
-		if (event.target === modaleContact) {
-			fermerModale();
-		}
-	});
+    // On ferme si on clique à l'extérieur ou avec Echap (ton code actuel est parfait ici)
+    window.addEventListener("click", function (event) {
+        if (event.target === modaleContact) { fermerModale(); }
+    });
 
-	// On ferme avec "Echap"
-	window.addEventListener("keydown", function (event) {
-		if (event.key === "Escape") {
-			fermerModale();
-		}
-	});
+    window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") { fermerModale(); }
+    });
 });
 
 // Page d'accueil
 
 document.addEventListener("DOMContentLoaded", function () {
 	let page = 1;
-
 	const tri = document.getElementById("filtre-tri");
 	const bouton = document.querySelector(".bouton_pagination button");
 	const gallery = document.getElementById("gallery");
 	const categorie = document.getElementById("filtre-categorie");
 	const format = document.getElementById("filtre-format");
+    
 
 	// On crée la fonction qu'on va réutilisé plusieurs fois
 	function chargerPhotos(reset = false) {
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",
 			},
-			body: "action=charger_plus&page=" + page + "&tri=" + tri.value + "&categorie=" + categorie.value + "&format=" + format.value,
+			body: "action=charger_plus&page=" + page + "&tri=" + tri.value + "&categorie=" + categorie.value + "&format=" + format.value + "&nonce=" + nonce,
 		})
 			.then((response) => response.text())
 			.then((html) => {
@@ -105,3 +105,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 });
+
+// Menu burger
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const burger = document.querySelector(".burger");
+  const menu = document.querySelector(".main-menu");
+
+  if (burger && menu) {
+    burger.addEventListener("click", function () {
+
+      burger.classList.toggle("active");
+      menu.classList.toggle("active");
+
+    });
+  }
+
+});
+
