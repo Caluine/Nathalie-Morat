@@ -110,11 +110,11 @@
 
                     if ($query->have_posts()) :
                         while ($query->have_posts()) : $query->the_post(); ?>
-
                             <div class="suggestion-carte">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('medium'); ?>
-                                </a>
+                                <?php
+                                // On appelle le même bloc photo que front-page
+                                get_template_part('template_part/lightbox');
+                                ?>
                             </div>
 
                     <?php endwhile;

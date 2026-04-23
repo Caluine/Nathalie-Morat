@@ -50,6 +50,22 @@ document.addEventListener("DOMContentLoaded", function () {
 	const gallery = document.getElementById("gallery");
 	const categorie = document.getElementById("filtre-categorie");
 	const format = document.getElementById("filtre-format");
+
+    jQuery(document).ready(function($) {
+    $('#filtre-categorie').select2({
+        width: '200px',
+        minimumResultsForSearch: Infinity
+    });
+
+    $('#filtre-format').select2({
+        width: '200px',
+        minimumResultsForSearch: Infinity
+    });
+
+    $('#filtre-tri').select2({
+        minimumResultsForSearch: Infinity // enlève la barre de recherche
+    });
+});
     
 
 	// On crée la fonction qu'on va réutilisé plusieurs fois
@@ -82,28 +98,32 @@ document.addEventListener("DOMContentLoaded", function () {
 			page++;
 			chargerPhotos(); // ajoute à la suite
 		});
+        
 	}
 
-	// Tri plus récents / plus anciens
-	if (tri) {
-		tri.addEventListener("change", function () {
-			chargerPhotos(true); // reset + remplace
-		});
-	}
+	// Partie filtres avec select2
+	jQuery(document).ready(function($) {
 
-	// Catégorie
-	if (categorie) {
-		categorie.addEventListener("change", function () {
-			chargerPhotos(true);
-		});
-	}
+    $('#filtre-categorie').select2({
+        width: '200px',
+        minimumResultsForSearch: Infinity
+    });
 
-	// Format
-	if (format) {
-		format.addEventListener("change", function () {
-			chargerPhotos(true);
-		});
-	}
+    $('#filtre-format').select2({
+        width: '200px',
+        minimumResultsForSearch: Infinity
+    });
+
+    $('#filtre-tri').select2({
+        minimumResultsForSearch: Infinity
+    });
+
+   
+    $('#filtre-categorie, #filtre-format, #filtre-tri').on('change', function() {
+        chargerPhotos(true);
+    });
+
+});
 });
 
 // Menu burger
@@ -123,4 +143,72 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+
+// Lightbox
+
+document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const imageLightbox = document.getElementById('lightbox-img');
+    const texteReference = document.getElementById('lb-ref');
+    const texteCategorie = document.getElementById('lb-cat');
+
+    let positionImage = 0;
+    let listePhotos = [];
+
+    // Met à jour l'affichage de la lightbox
+    const afficherDansLightbox = (nouvellePosition) => {
+        listePhotos = document.querySelectorAll('.photo_accueil');
+        
+        // boucle
+        if (nouvellePosition >= listePhotos.length) nouvellePosition = 0;
+        if (nouvellePosition < 0) nouvellePosition = listePhotos.length - 1;
+        
+        positionImage = nouvellePosition;
+
+        const blocPhoto = listePhotos[positionImage];
+        const image = blocPhoto.querySelector('img');
+
+        imageLightbox.src = image.getAttribute('data-full') || image.src;
+        texteReference.textContent = blocPhoto.querySelector('.bouton-plein-ecran')?.dataset.ref || '';
+        texteCategorie.textContent = blocPhoto.querySelector('.categorie')?.textContent || '';
+    };
+
+    document.addEventListener('click', (evenement) => {
+        const elementClique = evenement.target;
+
+        // ouvrir la lightbox
+        const bouton = elementClique.closest('.bouton-plein-ecran');
+        if (bouton && window.innerWidth > 768) {
+            evenement.preventDefault();
+
+            const blocPhoto = bouton.closest('.photo_accueil');
+
+            const position = Array.from(document.querySelectorAll('.photo_accueil')).indexOf(blocPhoto);
+
+            afficherDansLightbox(position);
+            lightbox.style.display = 'flex';
+            return;
+        }
+
+        if (lightbox.style.display !== 'flex') return;
+
+        // bouton suivant
+        if (elementClique.closest('.suivant')) {
+            afficherDansLightbox(positionImage + 1);
+        } 
+        // bouton precedent
+        else if (elementClique.closest('.precedent')) {
+            afficherDansLightbox(positionImage - 1);
+        }
+        // fermer la lightbox
+        else if (elementClique.closest('.close-lightbox') || elementClique === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+});
+
+
+
+
+
 

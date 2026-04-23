@@ -96,7 +96,7 @@ ul.main-menu {
     width: 90%;
     max-width: 450px; 
     border: 5px solid black;
-    font-family: monospace;
+    font-size: 10px;
     text-transform: uppercase;
     overflow: hidden; 
 }
@@ -124,8 +124,7 @@ ul.main-menu {
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box; 
-    font-family: inherit;
-    font-size: 12px;
+    font-size: 10px;
     resize: none;
 }
 
@@ -133,8 +132,7 @@ ul.main-menu {
     width: 100%; 
     display: block;
     margin-top: 10px;
-    font-family: monospace;
-    font-size:14px;
+    font-size:10px;
     background-color: rgba(220, 220, 220, 1);
     border: none;
     border-radius: 2px;
@@ -173,7 +171,6 @@ ul.main-menu {
   font-size: 7vw;
   font-style: italic;
   text-transform: uppercase;
-  z-index: 1;
 }
 
 /* Galeries photos de la page d'accueil chaque image est rajouté via la boucle wp */
@@ -221,6 +218,171 @@ ul.main-menu {
     cursor: pointer;
     background-color: rgba(200, 200, 200, 1);
 }
+
+/* LIGHTBOX */
+
+/* conteneur photo */
+.photo_accueil {
+  position: relative;
+  display: block;
+}
+
+/* bouton plein écran avec fond noir*/
+.bouton-plein-ecran {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  background-color: black; 
+  color: white;
+  border: none;
+  border-radius: 50%;      
+  width: 40px;             
+  height: 40px;           
+  display: flex;           
+  align-items: center;     
+  justify-content: center; 
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bouton-plein-ecran:hover {
+   transform: scale(1.2);
+}
+
+.photo_accueil:hover .bouton-plein-ecran {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox {
+  display: none; 
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.lightbox-contenu {
+  position: relative;
+  max-width: 70vw; 
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  object-fit: contain;
+}
+
+
+.nav {
+  position: relative; 
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  font-size: 15px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.nav:hover {
+   transform: scale(1.2);
+}
+
+
+/* infos sous image */
+.lightbox-infos {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.close-lightbox:hover {
+   transform: scale(1.2);
+}
+
+.photo_accueil {
+  position: relative;
+  overflow: hidden;
+}
+
+/* superposition invisible */
+.survol-photo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  opacity: 0;
+}
+
+.photo_accueil:hover .survol-photo {
+  opacity: 1;
+  background: rgba(0,0,0,0.4);
+}
+
+
+/* icone oeil centre */
+.icone-oeil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+}
+
+/* bas */
+.infos-bas {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.ref {
+  text-align: left;
+}
+
+.cat {
+  text-align: right;
+}
+
 
 /* Page mise en avant photo */
 
@@ -404,7 +566,6 @@ ul.main-menu {
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px 40px 10px 15px;
-    font-family: monospace;
     font-size: 14px;
     text-transform: uppercase;
     color: black;
@@ -412,15 +573,18 @@ ul.main-menu {
     min-width: 200px;
 }
 
-#filtre-tri {
+
+/* pousse "trier par" à droite */
+.filtres .select2-container:last-child {
     margin-left: auto;
 }
 
-.filtres select option:checked {
-  background-color: red;
-  color: white;
-}
 
+/* Hover */
+.select2-results__option--highlighted {
+    background-color: red !important;
+    color: white;
+}
 
 /* FOOTER */
 
@@ -460,16 +624,12 @@ ul.footer-menu {
   ul.main-menu {
     display: none; 
     flex-direction: column;
-
     position: fixed; 
-    top: 110px;
+    top: 72px;
     left: 0;
-
     width: 100%;
-    height: calc(100vh - 80px); 
-
+    height: calc(100vh - 72px); 
     background: red;
-
     justify-content: center; 
     align-items: center;     
 
@@ -527,9 +687,9 @@ ul.footer-menu {
     align-items: center;
   }
 
-  #filtre-tri {
+  .filtres .select2-container:last-child {
     margin-left: 0;
-  }
+}
 
   /* CONTACT + NAV */
   .contact-navigation {
@@ -564,6 +724,15 @@ ul.footer-menu {
   .suggestions-galerie {
     grid-template-columns: 1fr;
   }
+
+  /*lightbox */
+  .survol-photo {
+    display: none;
+  }
+  .bouton-plein-ecran {
+    display: none;
+  }
+
   /* Footer */
    ul.footer-menu {
     flex-direction: column;

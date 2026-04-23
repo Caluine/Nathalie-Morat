@@ -10,5 +10,21 @@
 </footer>
 <?php get_template_part('template_part/modale-contact'); ?>
 <?php wp_footer(); ?>
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">×</span>
+
+  <button class="nav precedent">← Précédente</button>
+
+  <div class="lightbox-contenu">
+    <img id="lightbox-img" src="" alt="">
+    
+    <div class="lightbox-infos">
+      <span id="lb-ref" class="ref"></span>
+      <span id="lb-cat" class="cat"></span>
+    </div>
+  </div>
+
+  <button class="nav suivant">Suivante →</button>
+</div>
 </body>
 </html>

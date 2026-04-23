@@ -40,13 +40,13 @@ function charger_plus()
   $categorie = isset($_POST['categorie']) ? $_POST['categorie'] : '';
   $format = isset($_POST['format']) ? $_POST['format'] : '';
   // Controle sécurité jeton nonce
- $nonce = $_POST['nonce'];
-//  $nonce = 123;
-  if( 
-     ! isset( $nonce ) or 
-     ! wp_verify_nonce( $nonce, 'mota-photo' ) 
+  $nonce = $_POST['nonce'];
+  //  $nonce = 123;
+  if (
+    ! isset($nonce) or
+    ! wp_verify_nonce($nonce, 'mota-photo')
   ) {
-      wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+    wp_send_json_error("Vous n’avez pas l’autorisation d’effectuer cette action.", 403);
   }
 
 
@@ -78,17 +78,39 @@ function charger_plus()
   ]);
 
   if ($query->have_posts()) :
-    while ($query->have_posts()) : $query->the_post(); ?>
+    while ($query->have_posts()) : $query->the_post();
 
-      <a class="photo_accueil" href="<?php the_permalink(); ?>">
-        <?php the_post_thumbnail('medium'); ?>
-      </a>
+      // On utilise le même template que front-page
+      get_template_part('template_part/lightbox');
 
-<?php endwhile;
+    endwhile;
   endif;
-
   wp_die();
 }
 
 add_action('wp_ajax_charger_plus', 'charger_plus');
 add_action('wp_ajax_nopriv_charger_plus', 'charger_plus');
+
+
+
+// Select2
+function charger_select2() {
+    // jQuery (WordPress en a déjà un)
+    wp_enqueue_script('jquery');
+
+    // CSS Select2
+    wp_enqueue_style(
+        'select2-css',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'
+    );
+
+    // JS Select2
+    wp_enqueue_script(
+        'select2-js',
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+        array('jquery'),
+        null,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'charger_select2');

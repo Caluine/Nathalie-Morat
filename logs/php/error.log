@@ -1,2 +1,11 @@
 [18-Apr-2026 13:23:22 UTC] PHP Warning:  Undefined array key "nonce" in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\functions.php on line 51
 [18-Apr-2026 13:23:26 UTC] PHP Warning:  Undefined array key "nonce" in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\functions.php on line 51
+[21-Apr-2026 09:33:39 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting "elseif" or "else" or "endif" in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\functions.php on line 123
+[21-Apr-2026 09:33:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-includes\class-wp-recovery-mode-email-service.php on line 367
+[21-Apr-2026 09:33:39 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-includes\class-wp-recovery-mode-email-service.php on line 368
+[21-Apr-2026 09:34:07 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting "elseif" or "else" or "endif" in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\functions.php on line 123
+[21-Apr-2026 09:34:07 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting "elseif" or "else" or "endif" in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\functions.php on line 123
+[22-Apr-2026 16:53:00 UTC] PHP Warning:  Undefined variable $categories in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
+[22-Apr-2026 16:53:00 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
+[22-Apr-2026 16:54:22 UTC] PHP Warning:  Undefined variable $categories in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
+[22-Apr-2026 16:54:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
