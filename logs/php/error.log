@@ -9,3 +9,4 @@
 [22-Apr-2026 16:53:00 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
 [22-Apr-2026 16:54:22 UTC] PHP Warning:  Undefined variable $categories in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
 [22-Apr-2026 16:54:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\morte\Local Sites\nathalie-morat\app\public\wp-content\themes\Theme-personnalise\front-page.php on line 16
+[24-Apr-2026 09:12:47 UTC] Erreur d’événement de replanification de tâche pour le crochet action_scheduler_run_queue. Code d’erreur : invalid_schedule. Message d’erreur : L’évènement planifié n’existe pas.. Données : {"schedule":"every_minute","args":["WP Cron"],"interval":60}

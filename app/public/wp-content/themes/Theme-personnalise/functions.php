@@ -42,6 +42,7 @@ function charger_plus()
   // Controle sécurité jeton nonce
   $nonce = $_POST['nonce'];
   //  $nonce = 123;
+  // Test de sécurité
   if (
     ! isset($nonce) or
     ! wp_verify_nonce($nonce, 'mota-photo')
@@ -95,7 +96,7 @@ add_action('wp_ajax_nopriv_charger_plus', 'charger_plus');
 
 // Select2
 function charger_select2() {
-    // jQuery (WordPress en a déjà un)
+    // jQuery 
     wp_enqueue_script('jquery');
 
     // CSS Select2

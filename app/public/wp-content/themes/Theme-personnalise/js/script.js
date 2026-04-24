@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
 // Page d'accueil
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,22 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	const categorie = document.getElementById("filtre-categorie");
 	const format = document.getElementById("filtre-format");
 
-    jQuery(document).ready(function($) {
-    $('#filtre-categorie').select2({
-        width: '200px',
-        minimumResultsForSearch: Infinity
-    });
+    jQuery(function ($) {
 
-    $('#filtre-format').select2({
-        width: '200px',
-        minimumResultsForSearch: Infinity
-    });
+        // INIT SELECT2
+        $('#filtre-categorie').select2({
+            width: '200px',
+            minimumResultsForSearch: Infinity
+        });
 
-    $('#filtre-tri').select2({
-        minimumResultsForSearch: Infinity // enlève la barre de recherche
+        $('#filtre-format').select2({
+            width: '200px',
+            minimumResultsForSearch: Infinity
+        });
+
+        $('#filtre-tri').select2({
+            minimumResultsForSearch: Infinity // enlève la barre de recherche
+        });
+
+        // FIX : empêche conflit clic Select2
+        $(document).on('mousedown', '.select2-results__option', function (e) {
+            e.stopPropagation();
+        });
+
     });
-});
-    
 
 	// On crée la fonction qu'on va réutilisé plusieurs fois
 	function chargerPhotos(reset = false) {
@@ -98,33 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			page++;
 			chargerPhotos(); // ajoute à la suite
 		});
-        
 	}
-
-	// Partie filtres avec select2
-	jQuery(document).ready(function($) {
-
-    $('#filtre-categorie').select2({
-        width: '200px',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('#filtre-format').select2({
-        width: '200px',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('#filtre-tri').select2({
-        minimumResultsForSearch: Infinity
-    });
-
-   
-    $('#filtre-categorie, #filtre-format, #filtre-tri').on('change', function() {
-        chargerPhotos(true);
-    });
-
 });
-});
+
 
 // Menu burger
 
@@ -143,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+
 
 // Lightbox
 
@@ -206,9 +191,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-
-
-
-
-
